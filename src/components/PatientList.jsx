@@ -1,6 +1,6 @@
 const PatientList = () => {
     return (
-        <div>
+        <div className="md:basis-1/2 lg:basis-3/5">
             Patients
         </div>
     )
