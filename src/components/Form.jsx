@@ -1,6 +1,9 @@
 import { useState } from "react"
+import Error from "./Error"
 
 const Form = ({ patients, setPatients }) => {
+    const [error, setError] = useState(false)
+
     const [patient, setPatient] = useState({
         name: '',
         owner: '',
@@ -12,9 +15,23 @@ const Form = ({ patients, setPatients }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         //Validate form
+        const {name, owner, email, date, sympthoms} = patient
+        
+        if ([name, owner, email, date, sympthoms].includes('')) {
+            setError(true)
+            return;
+        }
 
         //Update patients state
+        setError(false)
         setPatients([...patients, patient])
+        setPatient({
+            name: '',
+            owner: '',
+            email: '',
+            date: '',
+            sympthoms: ''
+        })
     }
 
     return (
@@ -25,10 +42,16 @@ const Form = ({ patients, setPatients }) => {
                 <span className="text-sky-600 font-bold"> Manage Them</span>
             </p>
 
+
             <form 
                 className="bg-white mt-10 rounded-lg py-10 px-5 shadow-md mb-10"
                 onSubmit={handleSubmit}
             >
+
+                {
+                    error && <Error />
+                }
+
                 <div className="mb-5">
                     <label htmlFor="pet's name" className="block uppercase text-gray-600 font-bold">Pet's name</label>
                     <input 
