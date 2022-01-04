@@ -1,4 +1,22 @@
-const Form = () => {
+import { useState } from "react"
+
+const Form = ({ patients, setPatients }) => {
+    const [patient, setPatient] = useState({
+        name: '',
+        owner: '',
+        email: '',
+        date: '',
+        sympthoms: ''
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        //Validate form
+
+        //Update patients state
+        setPatients([...patients, patient])
+    }
+
     return (
         <div className="md:basis-1/2 lg:basis-2/5">
             <h2 className="font-black text-center text-3xl">Register Pet</h2>
@@ -7,7 +25,10 @@ const Form = () => {
                 <span className="text-sky-600 font-bold"> Manage Them</span>
             </p>
 
-            <form action="" className="bg-white mt-10 rounded-lg py-10 px-5 shadow-md mb-10">
+            <form 
+                className="bg-white mt-10 rounded-lg py-10 px-5 shadow-md mb-10"
+                onSubmit={handleSubmit}
+            >
                 <div className="mb-5">
                     <label htmlFor="pet's name" className="block uppercase text-gray-600 font-bold">Pet's name</label>
                     <input 
@@ -15,6 +36,8 @@ const Form = () => {
                         id="pet's name" 
                         placeholder="Pet's name" 
                         className="border-2 w-full rounded-md border-gray-600 p-2 placeholder-gray-400 mt-4"
+                        value={patient.name}
+                        onChange={(e) => setPatient({...patient, name: e.target.value})}
                     />
                 </div>
                 <div className="mb-5">
@@ -24,6 +47,8 @@ const Form = () => {
                         id="Owner's name" 
                         placeholder="Owner's name" 
                         className="border-2 w-full rounded-md border-gray-600 p-2 placeholder-gray-400 mt-4"
+                        value={patient.owner}
+                        onChange={(e) => setPatient({...patient, owner: e.target.value})}
                     />
                 </div>
                 <div className="mb-5">
@@ -33,6 +58,8 @@ const Form = () => {
                         id="Email" 
                         placeholder="Email" 
                         className="border-2 w-full rounded-md border-gray-600 p-2 placeholder-gray-400 mt-4"
+                        value={patient.email}
+                        onChange={(e) => setPatient({...patient, email: e.target.value})}
                     />
                 </div>
                 <div className="mb-5">
@@ -41,6 +68,8 @@ const Form = () => {
                         type="date"  
                         id="Date" 
                         className="border-2 w-full rounded-md border-gray-600 p-2 placeholder-gray-400 mt-4"
+                        value={patient.date}
+                        onChange={(e) => setPatient({...patient, date: e.target.value})}
                     />
                 </div>
                 <div className="mb-5">
@@ -49,6 +78,8 @@ const Form = () => {
                         id="sympthoms"
                         className="w-full border-2 border-gray-600 p-2  mt-4 placeholder-gray-400 rounded-md"
                         placeholder="Enter the sympthoms" 
+                        value={patient.sympthoms}
+                        onChange={(e) => setPatient({...patient, sympthoms: e.target.value})}
                     />
                 </div>
 
