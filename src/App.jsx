@@ -16,7 +16,9 @@ const App = () => {
                     patients={patients}
                     setPatients={setPatients}
                 />
-                <PatientList />
+                <PatientList 
+                    patients={patients}
+                />
             </div>
         </div>
     )

@@ -9,8 +9,13 @@ const Form = ({ patients, setPatients }) => {
         owner: '',
         email: '',
         date: '',
-        sympthoms: ''
+        sympthoms: '',
+        id: randKey()
     })
+
+    function randKey() {
+        return Date.now().toString(36) + Math.random().toString(36).substring(2)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,7 +35,8 @@ const Form = ({ patients, setPatients }) => {
             owner: '',
             email: '',
             date: '',
-            sympthoms: ''
+            sympthoms: '',
+            id: randKey()
         })
     }
 
