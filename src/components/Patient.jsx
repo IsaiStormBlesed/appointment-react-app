@@ -1,5 +1,7 @@
-const Patient = ({patient}) => {
+const Patient = ({patient, setPatientoEdit}) => {
     const {name, owner, email, date, sympthoms} = patient
+
+    
     return (
         <div>
             <div className="bg-white px-5 py-7 shadow-md rounded-md mt-10 ml-5">
@@ -26,6 +28,7 @@ const Patient = ({patient}) => {
 
                 <div className="flex gap-2">
                     <button 
+                        onClick={(e) => setPatientoEdit(patient)}
                         className="bg-sky-600 text-white uppercase hover:bg-sky-700 rounded-md px-4 py-2 mt-3">
                         Edit
                     </button>

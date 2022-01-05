@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Error from "./Error"
 
-const Form = ({ patients, setPatients, setId }) => {
+const Form = ({ patients, setPatients, patientoEdit, setPatientoEdit}) => {
     const [error, setError] = useState(false)
     const [patient, setPatient] = useState({
         name: '',
@@ -11,6 +11,20 @@ const Form = ({ patients, setPatients, setId }) => {
         sympthoms: '',
         id:  ''
     })
+    
+    useEffect(() => {
+        if (Object.keys(patientoEdit).length > 0) {
+            setPatient({
+                name: patientoEdit.name,
+                owner: patientoEdit.owner,
+                email: patientoEdit.email,
+                date: patientoEdit.date,
+                sympthoms: patientoEdit.sympthoms,
+                id:  patientoEdit.id
+            })
+        }
+        console.log(patientoEdit)
+    }, [patientoEdit])
 
 
     const handleSubmit = (e) => {
@@ -23,10 +37,19 @@ const Form = ({ patients, setPatients, setId }) => {
             return;
         }
 
-        const keyId = Date.now().toString(36) + Math.random().toString(36).substring(2) 
+        if (patientoEdit.id) {
+            //Edit patient
+            setPatient(patient)
 
-        //Update patients state
-        setPatients([...patients, {...patient, id: keyId}])
+            const editedPatient = patients.map((pat) => pat.id == patientoEdit.id ? patient : pat)  
+            setPatients(editedPatient)
+        } else {
+            //Create new patient
+            const keyId = Date.now().toString(36) + Math.random().toString(36).substring(2) 
+            
+            setPatients([...patients, {...patient, id: keyId}])
+        }
+
         setPatient({
             name: '',
             owner: '',
@@ -35,6 +58,8 @@ const Form = ({ patients, setPatients, setId }) => {
             sympthoms: '',
             id: ''
         })
+        
+        setPatientoEdit({})
         setError(false)
     }
 
@@ -112,7 +137,7 @@ const Form = ({ patients, setPatients, setId }) => {
 
                 <input 
                     type="submit" 
-                    value="Add Pet" 
+                    value={Object.keys(patientoEdit).length > 0 ? "Edit Pet" : "Add Pet"} 
                     className="bg-sky-600 w-full p-2 text-white rounded-md cursor-pointer hover:bg-sky-800 transition-colors"
                 />
             </form>
