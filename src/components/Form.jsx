@@ -1,21 +1,17 @@
 import { useState } from "react"
 import Error from "./Error"
 
-const Form = ({ patients, setPatients }) => {
+const Form = ({ patients, setPatients, setId }) => {
     const [error, setError] = useState(false)
-
     const [patient, setPatient] = useState({
         name: '',
         owner: '',
         email: '',
         date: '',
         sympthoms: '',
-        id: randKey()
+        id:  ''
     })
 
-    function randKey() {
-        return Date.now().toString(36) + Math.random().toString(36).substring(2)
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,17 +23,19 @@ const Form = ({ patients, setPatients }) => {
             return;
         }
 
+        const keyId = Date.now().toString(36) + Math.random().toString(36).substring(2) 
+
         //Update patients state
-        setError(false)
-        setPatients([...patients, patient])
+        setPatients([...patients, {...patient, id: keyId}])
         setPatient({
             name: '',
             owner: '',
             email: '',
             date: '',
             sympthoms: '',
-            id: randKey()
+            id: ''
         })
+        setError(false)
     }
 
     return (

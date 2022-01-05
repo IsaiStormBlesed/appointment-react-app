@@ -6,7 +6,7 @@ import PatientList from "./components/PatientList";
 
 const App = () => {
     const [patients, setPatients] = useState([])
-
+    
     return (
         <div className="container mx-auto mt-20 mb-20">
             <Header />
