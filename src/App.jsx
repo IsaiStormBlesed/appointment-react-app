@@ -8,7 +8,7 @@ const App = () => {
     const [patients, setPatients] = useState([])
 
     return (
-        <div className="container mx-auto mt-20">
+        <div className="container mx-auto mt-20 mb-20">
             <Header />
 
             <div className="mt-20 md:flex">
