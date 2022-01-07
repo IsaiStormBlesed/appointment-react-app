@@ -23,7 +23,6 @@ const Form = ({ patients, setPatients, patientoEdit, setPatientoEdit}) => {
                 id:  patientoEdit.id
             })
         }
-        console.log(patientoEdit)
     }, [patientoEdit])
 
 
@@ -125,7 +124,7 @@ const Form = ({ patients, setPatients, patientoEdit, setPatientoEdit}) => {
                     />
                 </div>
                 <div className="mb-5">
-                    <label htmlFor="sympthoms" className="block uppercase text-gray-600 font-bold">Pet's name</label>
+                    <label htmlFor="sympthoms" className="block uppercase text-gray-600 font-bold">Sympthoms</label>
                     <textarea  
                         id="sympthoms"
                         className="w-full border-2 border-gray-600 p-2  mt-4 placeholder-gray-400 rounded-md"

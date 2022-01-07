@@ -1,5 +1,5 @@
-const Patient = ({patient, setPatientoEdit}) => {
-    const {name, owner, email, date, sympthoms} = patient
+const Patient = ({patient, setPatientoEdit, deletePatient}) => {
+    const {name, owner, email, date, sympthoms, id} = patient
 
     
     return (
@@ -34,7 +34,9 @@ const Patient = ({patient, setPatientoEdit}) => {
                     </button>
 
                     <button 
-                        className="bg-red-600 text-white uppercase hover:bg-red-700 rounded-md px-4 py-2 mt-3">
+                        className="bg-red-600 text-white uppercase hover:bg-red-700 rounded-md px-4 py-2 mt-3"
+                        onClick={() => deletePatient(id)}
+                      >
                         Delete
                     </button>
                 </div>
